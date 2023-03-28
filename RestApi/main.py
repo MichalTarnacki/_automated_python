@@ -7,6 +7,8 @@ from selenium.webdriver.chrome.service import Service
 app = Flask(__name__)
 
 service = Service('/Users/michal/Documents/_automated_python/chromedriver')
+
+
 def get_driver(url):
     options = webdriver.ChromeOptions()
     options.add_argument('disable-infobars')
@@ -28,7 +30,8 @@ def home():
 
 @app.route('/api/<platform>-<number>')
 def api(platform, number):
-    driv = get_driver(f'https://www.metacritic.com/browse/games/score/metascore/year/{platform}/filtered?view=condensed')
+    driv = get_driver(
+        f'https://www.metacritic.com/browse/games/score/metascore/year/{platform}/filtered?view=condensed')
     elements = driv.find_elements(By.CLASS_NAME, value="expand_collapse")
     list = []
     printed = 0
